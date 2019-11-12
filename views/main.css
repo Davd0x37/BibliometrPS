@@ -1,0 +1,135 @@
+nav {
+  border: 2px solid black;
+  background-color: #c0c0c0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+nav a {
+  border: 2px solid black;
+  background-color: #c0c0c0;
+  color: black;
+  font-family: Arial;
+  font-size: 13pt;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.container {
+  width: 50%;
+  margin: auto auto;
+}
+.container__box {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #eeeeee;
+  font-family: Arial;
+  border: 1px solid black;
+  margin: auto auto;
+}
+
+.strona__glowna {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #eeeeee;
+  font-family: Arial;
+  border: 1px solid black;
+  height: 200px;
+}
+.fieldset__container {
+  flex: 1 1 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fieldset__container div {
+  width: 150px;
+  padding: 25px;
+}
+
+.search_action {
+  border: 1px solid black;
+  background-color: #99ccff;
+  color: black;
+  font-family: Arial;
+  font-size: 11pt;
+  font-weight: bold;
+  padding: 10px;
+}
+
+h1 {
+  text-align: center;
+  color: #555555;
+}
+
+.divTable {
+  display: table;
+  width: 100%;
+}
+.divTableRow {
+  display: table-row;
+}
+.divTableHeading {
+  background-color: black;
+  display: table-header-group;
+}
+.divTableCell,
+.divTableHead {
+  border: 1px solid black;
+  display: table-cell;
+  padding: 2px 10px;
+  text-align: center;
+  font-weight: bold;
+}
+.divTableHeading {
+  background-color: black;
+  display: table-header-group;
+  font-weight: bold;
+}
+.divTableFoot {
+  background-color: black;
+  display: table-footer-group;
+  font-weight: bold;
+}
+.divTableBody {
+  display: table-row-group;
+}
+
+button {
+  border: 2px solid black;
+  background-color: #c0c0c0;
+  color: black;
+  font-family: Arial;
+  font-size: 13pt;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.button_action {
+  border: 2px solid black;
+  background-color: #c0c0c0;
+  color: black;
+  font-family: Arial;
+  font-size: 13pt;
+  font-weight: bold;
+  padding: 10px;
+}
+
+label {
+  display: inline-block;
+}
+
+fieldset
+{
+	background-color:#eeeeee;
+	font-family:Arial;
+	text-align: center;
+}
+legend
+{
+	background-color:#adc2eb;
+}
