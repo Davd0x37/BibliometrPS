@@ -40,6 +40,7 @@ if (
             <div class="divTableRow">
                 <div class="divTableCell">Nazwa</div>
                 <div class="divTableCell">Email</div>
+                <div class="divTableCell">Rola</div>
                 <div class="divTableCell">Edytuj</div>
                 <div class="divTableCell">Usuń</div>
             </div>
@@ -54,6 +55,7 @@ if (
                 <div class="divTableRow">
                     <div class="divTableCell"><?= $el['name'] ?></div>
                     <div class="divTableCell"><?= $el['email'] ?></div>
+                    <div class="divTableCell"><?= $el['role'] ?></div>
                     <div class="divTableCell">
                         <a href="admin.php?edit_user&name=<?= $el['name'] ?>">Edytuj</a>
                     </div>

@@ -36,7 +36,7 @@ if ((isset($_POST['id']) && !empty($_POST['id'])) || (isset($_GET['id']) && !emp
                     <input type="text" name="authors" id="authors" value="<?= join(", ", json_decode($pub['authors'])) ?>"></p>
                 <p><label for="publication_date">Data publikacji:</label>
                     <input type="date" name="publication_date" id="publication_date" value="<?= $pub['publication_date'] ?>"></p>
-                <p><label for="shares">Udziały (Wzór: Mark-20,John-30):</label>
+                <p><label for="shares">Udziały (Wzór: Mark-20, John-30):</label>
                     <input type="text" name="shares" id="shares" value="<?= $shares ?>"></p>
                 <p><label for="points">Punkty ministerialne:</label>
                     <input type="number" name="points" id="points" value="<?= $pub['points'] ?>"></p>
