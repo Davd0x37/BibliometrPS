@@ -151,8 +151,15 @@ class Publication
             if ($data['authors']) {
                 $authors = json_decode($data['authors']);
                 Publication::delete_publications_list_id($id);
-                foreach ($authors as $auth) {
-                    $usr = User::read("name = '" . $auth . "'");
+                if(is_array($authors) && count($authors) > 1) {
+                    foreach ($authors as $auth) {
+                        $usr = User::read("name = '" . $auth . "'");
+                        if ($usr) {
+                            Publication::add_author($id, [$usr[0]['id']]);
+                        }
+                    }
+                }else{
+                    $usr = User::read("name = '" . $authors[0] . "'");
                     if ($usr) {
                         Publication::add_author($id, [$usr[0]['id']]);
                     }
@@ -228,6 +235,50 @@ class Publication
                         $shares = $pc['shares'];
                         $shares = json_decode($shares);
                         unset($shares->{$user['name']});
+                        $shares = json_encode($shares);
+
+                        Publication::update_publication($pc['id'], [
+                            "shares" => $shares,
+                            "authors" => $authors
+                        ]);
+                    }
+                }
+            }
+        }
+    }
+
+    public static function replace_author(string $author_id, string $new_name, string $old_name)
+    {
+        $pub = Publication::get_publications_list($author_id, "`author_id`, `publication_id`", "author_id");
+        $user = User::read("id = '" . $author_id . "'");
+        if ($user) {
+            if ($pub) {
+                $user = $user[0];
+                foreach ($pub as $p) {
+                    $public = Publication::get_publication_by_id($p['publication_id']);
+                    foreach ($public as $pc) {
+                        $authors = $pc['authors'];
+                        $authors = json_decode($authors);
+                        if(is_array($authors) && count($authors) > 1) {
+                            $authors = array_map($authors, function($auth) use ($user) {
+                                if($auth === $user['name']) {
+                                    return $new_name;
+                                }else{
+                                    return $auth;
+                                }
+                            });
+                            $authors = array_values($authors);
+                            $authors = json_encode($authors);
+                        }else{
+                            $authors = $new_name;
+                            $authors = json_encode([$authors]);
+                        }
+                        
+
+                        $shares = $pc['shares'];
+                        $shares = json_decode($shares);
+                        $shares->{$new_name} = $shares->{$old_name};
+                        unset($shares->{$old_name});
                         $shares = json_encode($shares);
 
                         Publication::update_publication($pc['id'], [

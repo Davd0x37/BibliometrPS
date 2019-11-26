@@ -36,7 +36,7 @@ function check(string $what)
 
 function edit_shares($data)
 {
-    $shares = explode(",", $data);
+    $shares = explode(", ", $data);
     $shar = new stdClass();
     $counter = 0;
     foreach ($shares as $sh) {
@@ -68,6 +68,29 @@ function is_author($authors)
     $authors = is_array($authors) ? json_encode($authors) : $authors;
     $arr = explode(", ", $authors);
     return isset($_SESSION['name']) && $_SESSION['name'] === json_decode($arr[0])[0];
+}
+
+function get_search_cond_id(array $cond) {
+    $ret = [];
+    foreach ($cond as $key => $val) {
+        switch ($key) {
+            case "pubid": {
+                if ($val !== "") {
+                    if(is_array($val)) {
+                        foreach($val as $id) {
+                            array_push($ret, "id = '".$id."'");
+                        }
+                    }
+                }
+                break;
+            }
+            default:
+                break;
+        }
+    }
+    $ret = count($ret) > 1 ? join(" OR ", $ret) : join("", $ret);
+    $ret = "(" . $ret . ")";
+    return $ret;
 }
 
 function get_search_cond(array $cond)
