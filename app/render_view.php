@@ -10,15 +10,20 @@ function render_edit_user(string $action, string $method, array $values = null)
                 <input type="email" name="mail" id="mail" value="<?= $values ? (array_key_exists('mail', $values) ? $values['mail'] : "") : "" ?>"></p>
             <p><label for="afiliacja">Afiliacja:</label>
                 <input type="text" name="afiliacja" id="afiliacja" value="<?= $values ? (array_key_exists('afiliacja', $values) ? $values['afiliacja'] : "") : "" ?>"></p>
-            <p><label for="password">Hasło</label>
-                <input type="password" name="password" id="password" value="<?= $values ? (array_key_exists('password', $values) ? $values['password'] : "") : "" ?>"></p>
-            <p><label for="role">Rola:</label>
-                <select name="role" id="role">
-                    <option value="user" <?= $values ? (array_key_exists('role', $values) ? ($values['role'] === "user" ? "selected" : "") : "") : "selected" ?>>Użytkownik</option>
-                    <option value="admin" <?= $values ? (array_key_exists('role', $values) ? ($values['role'] === "admin" ? "selected" : "") : "") : "" ?>>Administrator</option>
-                </select>
-            </p>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "admin") { ?>
+                <p><label for="password">Hasło</label>
+                    <input type="password" name="password" id="password" value="<?= $values ? (array_key_exists('password', $values) ? $values['password'] : "") : "" ?>"></p>
+                <p><label for="role">Rola:</label>
+                    <select name="role" id="role">
+                        <option value="user" <?= $values ? (array_key_exists('role', $values) ? ($values['role'] === "user" ? "selected" : "") : "") : "selected" ?>>Użytkownik</option>
+                        <option value="admin" <?= $values ? (array_key_exists('role', $values) ? ($values['role'] === "admin" ? "selected" : "") : "") : "" ?>>Administrator</option>
+                    </select>
+                </p>
+            <?php } ?>
             <input type="submit" class="button_action" value="Edytuj">
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "user") { ?>
+                <p>W celu zmiany hasła skontaktuj się z adminem <a href="mailto:admin@admin.com">Admin</a></p>
+            <?php } ?>
         </div>
     </form>
 <?php
