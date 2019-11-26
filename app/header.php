@@ -9,6 +9,15 @@ require __DIR__ . "/../utils.php";
 
 session_start();
 ob_start();
+
+if (isset($_SESSION['name'])) {
+  $req = User::author_exists($_SESSION['name']);
+  if (!$req) {
+    session_unset();
+    session_destroy();
+    header("Location: index.php");
+  }
+}
 ?>
 
 <html>

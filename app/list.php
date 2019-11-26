@@ -49,14 +49,15 @@ $conds = array_filter($_REQUEST, function ($val, $key) {
     return $val !== "";
 }, ARRAY_FILTER_USE_BOTH);
 
-
 $cond = null;
 $tables = null;
 if ($action) {
     $tables = get_search_cond_box($conds);
     $where = get_search_cond($conds);
+    $whereExport = get_search_cond_id($conds);
     $sorts = get_search_cond_sort($conds);
-    $cond = ($where !== "" ? " WHERE " . $where : "");
+    $cond = ($whereExport !== "()" ? " WHERE " . $whereExport : "");
+    $cond .= ($cond !== "" && $where !== "" ? " AND " . $where : "");
     $cond .= ($sorts !== "" ? " ORDER BY " . $sorts : "");
 }
 
@@ -220,7 +221,7 @@ if ($pub) {
                     }
                     ?>
                 <div class="divTableRow">
-                    <div class="divTableCell"><input type="checkbox" name="pubid" value="<?= $el['id'] ?>" /></div>
+                    <div class="divTableCell"><input type="checkbox" name="pubid[]" id="pubid" value="<?= $el['id'] ?>" /></div>
                     <?php if ($action) { ?>
                         <?php if ($nazwabox) { ?>
                             <div class="divTableCell">
