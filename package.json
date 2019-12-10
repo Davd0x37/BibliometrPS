@@ -7,7 +7,8 @@
   "scripts": {
     "clean": "gulp clean",
     "styles": "gulp styles",
-    "build": "gulp"
+    "build": "gulp",
+    "dev": "gulp dev"
   },
   "devDependencies": {
     "del": "^5.1.0",

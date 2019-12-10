@@ -1,9 +1,31 @@
 $button_border: 2px solid #000;
 $bg_color: silver;
+$bg_main: white;
+$bg_container: #eee;
+$resultTableColor: $bg_container;
+// Czy wiersze mają być kolorowane parzyście
+$resultTableEven: true;
+// Czy ma kolorować wiersze parzyste...
+$resultTableEvenOdd: true;
+// Kolor całej tablicy jeśli nie wybraliśmy resultTableEvenOdd
+$resultTableBackground: red;
+
+@mixin evenOddTable($el, $color, $even: true) {
+  @if $even {
+    #{$el}:nth-child(even) {
+      background-color: $color;
+    }
+  }@else {
+    #{$el}:nth-child(odd) {
+      background-color: $color;
+    }
+  }
+}
 
 body {
   font-family: Arial;
   font-weight: 700;
+  background-color: $bg_main;
 }
 
 nav {
@@ -48,7 +70,7 @@ nav {
   &__box {
     display: flex;
     flex-wrap: wrap;
-    background-color: #eee;
+    background-color: $bg_container;
 
     font-family: Arial;
     border: 1px solid #000;
@@ -59,7 +81,7 @@ nav {
 .strona__glowna {
   display: flex;
   flex-wrap: wrap;
-  background-color: #eee;
+  background-color: $bg_container;
 
   font-family: Arial;
   border: 1px solid #000;
@@ -99,6 +121,14 @@ h1 {
   width: 100%;
   &Row {
     display: table-row;
+  }
+
+  @if $resultTableEvenOdd {
+    @include evenOddTable("&Row", $resultTableColor, $resultTableEven);
+  } @else {
+    &Row {
+      background-color: $resultTableBackground;
+    }
   }
 
   &Heading {
@@ -156,7 +186,7 @@ label {
 }
 
 fieldset {
-  background-color: #eee;
+  background-color: $bg_container;
 
   font-family: Arial;
   text-align: center;
