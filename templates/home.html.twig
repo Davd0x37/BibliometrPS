@@ -1,0 +1,144 @@
+{% extends "base.html.twig" %}
+{% block title %}
+{{title}}
+{% endblock %}
+{% block body %}
+<nav>
+    <a href="index.php">Strona główna</a>
+    <a href="admin.php">Panel administracji</a>
+    <a href="login.php">Logowanie</a>
+    <a href="register.php">Rejestracja</a>
+    <a href="profile.php">Mój profil</a>
+    <a href="index.php?logout">Wyloguj</a>
+</nav>
+<h1>Bibliometr</h1>
+<form action="?" method="get">
+    <div class="strona__glowna">
+        <div class="fieldset__container">
+            <div>
+                <label for="tytul">Tytuł:</label>
+                <input type="text" name="tytul" id="tytul" value="" />
+            </div>
+            <div>
+                <label for="author">Autor:</label>
+                <input type="text" name="author" id="author" value="" />
+            </div>
+        </div>
+        <div class="fieldset__container">
+            <div>
+                <label for="dataod">Data od:</label>
+                <input type="date" name="dataod" id="dataod" value="" />
+            </div>
+            <div>
+                <label for="datado">Data do:</label>
+                <input type="date" name="datado" id="datado" value="" />
+            </div>
+        </div>
+        <div class="fieldset__container">
+            <div>
+                <label for="sortujwedlug">Sortuj według:</label>
+                <select name="sortujwedlug">
+                    <option value="title">Nazwa publikacji</option>
+                    <option value="authors">Autor publikacji</option>
+                    <option value="shares">Współautor publikacji</option>
+                    <option value="publication_date">Data publikacji</option>
+                    <option value="points">Punkty</option>
+                    <option value="magazine">Czasopismo</option>
+                    <option value="conference">Konferencja</option>
+                </select>
+                <p>
+                    <label for="asc">Rosnąco:</label>
+                    <input type="radio" name="sort" id="asc" value="asc">
+                </p>
+                <p>
+                    <label for="desc">Malejąco:</label>
+                    <input type="radio" name="sort" id="desc" value="desc">
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="strona__glowna">
+        <div class="select__options">
+            <div class="fieldset__container">
+                <div>
+                    <input type="checkbox" name="nazwabox" id="nazwabox" checkbox>
+                    <label for="nazwabox">Nazwa publikacji</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="authorbox" id="authorbox" checkbox>
+                    <label for="authorbox">Autorzy publikacji</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="sharesbox" id="sharesbox" checkbox>
+                    <label for="sharesbox">Udziały</label>
+                </div>
+            </div>
+            <div class="fieldset__container">
+                <div>
+                    <input type="checkbox" name="punktybox" id="punktybox">
+                    <label for="punktybox">Punkty</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="databox" id="databox" checkbox>
+                    <label for="databox">Data publikacji</label>
+                </div>
+            </div>
+            <div class="fieldset__container">
+                <div>
+                    <input type="checkbox" name="magazinebox" id="magazinebox">
+                    <label for="magazinebox">Czasopismo</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="conferencebox" id="conferencebox">
+                    <label for="conferencebox">Konferencja</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="urlbox" id="urlbox">
+                    <label for="urlbox">URL/DOI</label>
+                </div>
+            </div>
+        </div>
+        <div class="select__options__submit">
+            <input class="search_action" name="action" type="submit" value="Szukaj">
+            <input class="search_action" name="action" type="submit" value="Eksport">
+        </div>
+    </div>
+    <hr>
+    <div class="divTable">
+        <div class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell">Wybierz</div>
+                <div class="divTableCell">Tytuł publikacji</div>
+                <div class="divTableCell">Autorzy</div>
+                <div class="divTableCell">Udziały</div>
+                <div class="divTableCell">Data publikacji</div>
+                <div class="divTableCell">Punkty ministerialne</div>
+                <div class="divTableCell">Czasopismo</div>
+                <div class="divTableCell">URL/DOI</div>
+                <div class="divTableCell">Edytuj</div>
+                <div class="divTableCell">Usuń</div>
+            </div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell">
+                <input type="checkbox" name="pubid[]" id="pubid" value="123" />
+            </div>
+            <div class="divTableCell">
+                <a href="publication.php?id">Przykładowy tytuł</a>
+            </div>
+            <div class="divTableCell">Zbychu</div>
+            <div class="divTableCell">Zbychu:100</div>
+            <div class="divTableCell">12.12.2020</div>
+            <div class="divTableCell">2137</div>
+            <div class="divTableCell">Czasopismo</div>
+            <div class="divTableCell"><a href="#">URL</a></div>
+            <div class="divTableCell">
+                <a href="admin.php?edit_publication">Edytuj</a>
+            </div>
+            <div class="divTableCell">
+                <a href="admin.php?delete_publication">Usuń</a>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
